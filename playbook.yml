@@ -21,21 +21,14 @@
         dest: /tmp/
         remote_src: yes
 
-    - name: Move oc binary to /bin
-      copy:
-        src: /tmp/oc
-        dest: /bin/oc
-        mode: '0755'
-        remote_src: yes
-
     - name: Login to OpenShift cluster
       shell: >
-        oc login --token={{ oc_token }} --server={{ oc_server }}
+        ./tmp/oc login --token={{ oc_token }} --server={{ oc_server }}
       when: oc_token is defined and oc_server is defined
 
     - name: Get OpenShift node CPU usage
       shell: |
-        oc adm top node {{ node_name }} --no-headers | awk '{print $3}' | sed 's/%//'
+        ./tmp/oc adm top node {{ node_name }} --no-headers | awk '{print $3}' | sed 's/%//'
       register: cpu_usage_output
 
     - name: Set usage value

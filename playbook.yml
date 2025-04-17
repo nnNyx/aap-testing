@@ -23,12 +23,12 @@
 
     - name: Login to OpenShift cluster
       shell: >
-        ./tmp/oc login --token={{ oc_token }} --server={{ oc_server }}
+        /tmp/oc login --token={{ oc_token }} --server={{ oc_server }}
       when: oc_token is defined and oc_server is defined
 
     - name: Get OpenShift node CPU usage
       shell: |
-        ./tmp/oc adm top node {{ node_name }} --no-headers | awk '{print $3}' | sed 's/%//'
+        /tmp/oc adm top node {{ node_name }} --no-headers | awk '{print $3}' | sed 's/%//'
       register: cpu_usage_output
 
     - name: Set usage value

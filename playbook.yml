@@ -19,6 +19,7 @@
       unarchive:
         src: /tmp/openshift-client-linux.tar.gz
         dest: /tmp/
+        mode: '0755'
         remote_src: yes
 
     - name: Login to OpenShift cluster

@@ -57,6 +57,6 @@
   
     - name: Deploy Helm chart
       shell: |
-        ./helm upgrade --install {{ helm_chart_name }} . -n {{ namespace }} --create-namespace
+        ./helm upgrade --install {{ helm_chart_name }} ./ -n {{ namespace }} --create-namespace
       args:
         chdir: "{{ playbook_dir }}/helm"

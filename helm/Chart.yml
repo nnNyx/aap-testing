@@ -1,4 +1,0 @@
-apiVersion: v2
-name: sample-busybox
-version: 0.1.0
-description: A simple BusyBox Helm chart

@@ -24,7 +24,7 @@
 
     - name: Login to OpenShift cluster
       shell: >
-        /tmp/oc login --token={{ oc_token }} --server={{ oc_server }}
+        /tmp/oc login --token={{ oc_token }} --server={{ oc_server }} --insecure-skip-tls-verify
       when: oc_token is defined and oc_server is defined
 
     - name: Get OpenShift node CPU usage

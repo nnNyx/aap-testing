@@ -54,13 +54,6 @@
         rm -rf linux-amd64 helm.tar.gz
       args:
         chdir: "{{ playbook_dir }}/helm"
-
-    - name: Test helm ls
-      shell: |
-        pwd
-        ls *
-      args:
-        chdir: "{{ playbook_dir }}/helm"
   
     - name: Deploy Helm chart
       shell: |

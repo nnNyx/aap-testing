@@ -54,6 +54,12 @@
         rm -rf linux-amd64 helm.tar.gz
       args:
         chdir: "{{ playbook_dir }}/helm"
+
+    - name: Test helm chart
+      shell: |
+        ./helm template sample-busybox
+      args:
+        chdir: "{{ playbook_dir }}/helm"
   
     - name: Deploy Helm chart
       shell: |

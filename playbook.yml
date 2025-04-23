@@ -55,6 +55,13 @@
       args:
         chdir: "{{ playbook_dir }}/helm"
 
+    - name: Test helm ls
+      shell: |
+        pwd
+        ls *
+      args:
+        chdir: "{{ playbook_dir }}/helm"
+  
     - name: Deploy Helm chart
       shell: |
         ./helm upgrade --install {{ helm_chart_name }} . -n {{ namespace }} --create-namespace

@@ -45,18 +45,19 @@
         src: helm/values.yaml.j2
         dest: helm/values.yaml
 
-    - name: Download Helm binary into chart directory
+    - name: Download Helm binary into a separate folder
       shell: |
+        mkdir -p {{ playbook_dir }}/helm-bin
         curl -sSL https://get.helm.sh/helm-v3.14.0-linux-amd64.tar.gz -o helm.tar.gz
         tar -xzf helm.tar.gz
-        mv linux-amd64/helm helm
-        chmod +x helm
+        mv linux-amd64/helm {{ playbook_dir }}/helm-bin/helm
+        chmod +x {{ playbook_dir }}/helm-bin/helm
         rm -rf linux-amd64 helm.tar.gz
       args:
-        chdir: "{{ playbook_dir }}/helm"
-  
+        chdir: "{{ playbook_dir }}"
+
     - name: Deploy Helm chart
       shell: |
-        ./helm upgrade --install {{ helm_chart_name }} ./ -n {{ namespace }} --create-namespace
+        {{ playbook_dir }}/helm-bin/helm upgrade --install {{ helm_chart_name }} ./helm -n {{ namespace }} --create-namespace
       args:
-        chdir: "{{ playbook_dir }}/helm"
+        chdir: "{{ playbook_dir }}"

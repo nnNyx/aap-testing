@@ -5,7 +5,7 @@
   vars:
     helm_chart_name: sample-busybox
     namespace: ntrivunovic
-    node_name: "dos-worker1.lan.croz.net"  # Replace with actual node name
+    node_name: "dos-worker1.lan.croz.net"
     usage_threshold: 0.0
   tasks:
 
